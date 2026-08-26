@@ -105,7 +105,8 @@ Fermi_Matched = Fermi_Point_Sources[idx_fermi]
 Match_Seperation = [float(x.value) for x in sep2d]
 
 Swift_Matched_Names = [Swift_Matched['COUNTERPART_NAME'][x] if Swift_Matched['COUNTERPART_NAME'][x] != 'NA' and Swift_Matched['COUNTERPART_NAME'][x] != 'None' else Swift_Matched['BAT_NAME'].tolist()[x].replace('SWIFT ', 'SWIFT_') for x in range(len(Swift_Matched))]
-Fermi_Matched_Names = [Fermi_Matched['ASSOC1'].tolist()[x].strip() if Fermi_Matched['ASSOC1'].tolist()[x].strip() != '' else Fermi_Matched['Source_Name'].tolist()[x].strip() for x in range(len(Fermi_Matched))]
+Fermi_Matched_Names = [Fermi_Matched['ASSOC1'].tolist()[x].strip() if Fermi_Matched['ASSOC1'].tolist()[x].strip() != '' else Fermi_Matched['ASSOC2'].tolist()[x].strip() if Fermi_Matched['ASSOC2'].tolist()[x].strip() != '' else Fermi_Matched['Source_Name'].tolist()[x].strip() for x in range(len(Fermi_Matched))]
+print(Fermi_Matched_Names)
 
 
 Swift_Matched_RA = Swift_Matched['RA'].tolist()

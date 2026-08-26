@@ -96,4 +96,18 @@ Flagged_Match_Columns = [Flagged_Matches[x].tolist() for x in Flagged_Matches.co
 ids = np.arange(1, len(Flagged_Matches)+1, 1)
 
 Cross_Match_Update_Catalog = Table([ids, Flagged_Match_Columns[0], Flagged_Match_Columns[1], Flagged_Match_Columns[3], Flagged_Match_Columns[2], Flagged_Match_Columns[4], Flagged_Match_Columns[9], Matched_Swift_Gamma, Matched_Swift_Gamma_Errm, Matched_Swift_Gamma_Errp, Matched_Swift_Flux, Matched_Swift_Flux_Errm, Matched_Swift_Flux_Errp, Flagged_Match_Columns[5], Flagged_Match_Columns[6], Matched_Fermi_Gamma, Matched_Fermi_Gamma_Err, Matched_Fermi_Flux, Matched_Fermi_Flux_Err, Flagged_Match_Columns[7], Flagged_Match_Columns[8], Energy_Bin_Centers, Cross_Matched_SED_Data, Cross_Matched_SED_Data_err], names=['id', 'flag', 'bat_name_counterpart', 'bat_category_type', 'fermi_name_counterpart', 'fermi_category_type', 'separation', 'bat_pindex', 'bat_pindex_errm', 'bat_pindex_errp', 'bat_flux', 'bat_flux_errm', 'bat_flux_errp', 'bat_ra', 'bat_dec', 'fermi_pindex_PL', 'fermi_pindex_PL_err','fermi_flux', 'fermi_flux_err' ,'fermi_ra', 'fermi_dec', 'Energy', 'Energy_Flux', 'Energy_Flux_Err'])
+Cross_Match_Update_Catalog['separation'].unit = 'deg'
+Cross_Match_Update_Catalog['bat_flux'].unit = 'erg / (cm^2 s)'
+Cross_Match_Update_Catalog['bat_flux_errp'].unit = 'erg / (cm^2 s)'
+Cross_Match_Update_Catalog['bat_flux_errm'].unit = 'erg / (cm^2 s)'
+Cross_Match_Update_Catalog['bat_ra'].unit = 'deg'
+Cross_Match_Update_Catalog['bat_dec'].unit = 'deg'
+Cross_Match_Update_Catalog['fermi_flux'].unit = 'erg / (cm^2 s)'
+Cross_Match_Update_Catalog['fermi_flux_err'].unit = 'erg / (cm^2 s)'
+Cross_Match_Update_Catalog['fermi_ra'].unit = 'deg'
+Cross_Match_Update_Catalog['fermi_dec'].unit = 'deg'
+Cross_Match_Update_Catalog['Energy'].unit = 'MeV'
+Cross_Match_Update_Catalog['Energy_Flux'].unit = 'MeV / (cm^2 s)'
+Cross_Match_Update_Catalog['Energy_Flux_Err'].unit = 'MeV / (cm^2 s)'
+
 Cross_Match_Update_Catalog.write(output_dir + 'cross_match_updated.fits', overwrite=True)

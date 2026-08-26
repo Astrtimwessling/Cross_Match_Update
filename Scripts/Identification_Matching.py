@@ -78,7 +78,7 @@ idx_order_fermi = [{name: i for i, name in enumerate([x.strip() for x in Fermi_P
 Fermi_Matched = Fermi_Point_Sources[idx_order_fermi]
 
 Swift_Matched_Names = [Swift_Matched['COUNTERPART_NAME'][x] if Swift_Matched['COUNTERPART_NAME'][x] != 'NA' and Swift_Matched['COUNTERPART_NAME'][x] != 'None' else Swift_Matched['BAT_NAME'].tolist()[x] for x in range(len(Swift_Matched))]
-Fermi_Matched_Names = [Fermi_Matched['ASSOC1'].tolist()[x].strip() if Fermi_Matched['ASSOC1'].tolist()[x].strip() != '' else Fermi_Matched['Source_Name'].tolist()[x].strip() for x in range(len(Fermi_Matched))]
+Fermi_Matched_Names = [Fermi_Matched['ASSOC1'].tolist()[x].strip() if Fermi_Matched['ASSOC1'].tolist()[x].strip() != '' else Fermi_Matched['ASSOC2'].tolist()[x].strip() if Fermi_Matched['ASSOC2'].tolist()[x].strip() != '' else Fermi_Matched['Source_Name'].tolist()[x].strip() for x in range(len(Fermi_Matched))]
 
 Swift_Matched_RA = Swift_Matched['RA'].tolist()
 Swift_Matched_DEC = Swift_Matched['DEC'].tolist()

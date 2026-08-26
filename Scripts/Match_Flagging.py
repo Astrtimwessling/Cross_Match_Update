@@ -7,6 +7,7 @@ catalog_dir = '/home/alab_student/Tim/Projects/Cross_Match_Update/Catalogs/'
 output_dir = '/home/alab_student/Tim/Projects/Cross_Match_Update/Outputs'
 
 Spatial_Matches = Table.read(output_dir + '/Seperation_Matching_Outputs/Seperation_Matched_Table.fits')
+Spatial_Matches = Spatial_Matches[[x != 'PSR J0534+2200' for x in Spatial_Matches['Fermi_Name'].tolist()]] # Remove duplicate crab associated with Pulsar
 Identification_Matches = Table.read(output_dir + '/Identification_Matching_Outputs/Identification_Match_Table.fits')
 
 Minami_Flags = Table.read(catalog_dir + 'crossmatch_update+LAT_DR4model_260822.fits')
@@ -15,9 +16,11 @@ Spatial_Match_Names = list(zip(Spatial_Matches['Swift_Name'].tolist(), Spatial_M
 Identification_Match_Names = list(zip(Identification_Matches['Swift_Name'].tolist(), Identification_Matches['Fermi_Name'].tolist()))
 
 Both_Matched = [x for x in Spatial_Match_Names if x in Identification_Match_Names]
+
 Only_id_Matched = [x for x in Identification_Match_Names if x not in Spatial_Match_Names]
 Only_spatial_Matched = [x for x in Spatial_Match_Names if x not in Identification_Match_Names]
 All_Matches = Spatial_Match_Names + Only_id_Matched
+
 
 print(f"Number spatial and id matched: {len(Both_Matched)}, Number only spatial matched: {len(Only_spatial_Matched)}, Number only id matched: {len(Only_id_Matched)}")
 print(f"Total Matched: {len(Both_Matched) + len(Only_id_Matched) + len(Only_spatial_Matched)}")
